@@ -47,7 +47,8 @@ jobs:
         run: gh release upload ${{ needs.release-please.outputs.tag_name }} ./FirewallConsoleApp.zip --clobber
 
       - name: Publish to Winget
-        uses: microsoft/winget-create-action@v2
+        uses: vedantmgoyal9/winget-releaser@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          installer-url: https://github.com/${{ github.repository }}/releases/download/${{ needs.release-please.outputs.tag_name }}/FirewallConsoleApp.zip
+          identifier: FirewallConsoleApp
+          token: ${{ secrets.WINGET_TOKEN }}
+          release-tag: ${{ needs.release-please.outputs.tag_name }}
