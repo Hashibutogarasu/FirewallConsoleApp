@@ -69,10 +69,21 @@ jobs:
           dotnet build LibFirewall/LibFirewall.csproj -c Release
           dotnet pack LibFirewall/LibFirewall.csproj -c Release -o ./local-packages --no-build
 
-      - name: Publish Single File
+      - name: Create Temporary NuGet.Config
         run: |
-          $local_source = Join-Path (Get-Location) "local-packages"
-          dotnet publish FirewallConsoleApp/FirewallConsoleApp.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o ./publish --source "$local_source" --source https://api.nuget.org/v3/index.json
+          $config = @"
+          <?xml version="1.0" encoding="utf-8"?>
+          <configuration>
+            <packageSources>
+              <add key="local-packages" value="$(Get-Location)\local-packages" />
+              <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
+            </packageSources>
+          </configuration>
+          "@
+          $config | Out-File -FilePath nuget.config -Encoding utf8
+
+      - name: Publish Single File
+        run: dotnet publish FirewallConsoleApp/FirewallConsoleApp.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o ./publish
 
       - name: Zip Artifact
         run: Compress-Archive -Path ./publish/* -DestinationPath ./FirewallConsoleApp.zip
