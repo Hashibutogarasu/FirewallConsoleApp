@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.11](https://github.com/Hashibutogarasu/FirewallConsoleApp/compare/v1.0.10...v1.0.11) (2026-02-04)
+
+
+### Bug Fixes
+
+* fixed git folder not found ([b32e51a](https://github.com/Hashibutogarasu/FirewallConsoleApp/commit/b32e51a91bc17e1480370c1a62e4f718b140e644))
+
 ## [1.0.10](https://github.com/Hashibutogarasu/FirewallConsoleApp/compare/v1.0.9...v1.0.10) (2026-02-04)
 
 
