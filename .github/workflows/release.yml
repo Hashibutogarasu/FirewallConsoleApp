@@ -40,18 +40,18 @@ jobs:
           path: LibFirewall
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Checkout LibFirewallShared
+      - name: Checkout LibFirewall.Shared
         uses: actions/checkout@v4
         with:
-          repository: Hashibutogarasu/LibFirewallShared
-          path: LibFirewallShared
+          repository: Hashibutogarasu/LibFirewall.Shared
+          path: LibFirewall.Shared
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Checkout FirewallConsoleAppAPI
+      - name: Checkout FirewallConsoleApp.API
         uses: actions/checkout@v4
         with:
-          repository: Hashibutogarasu/FirewallConsoleAppAPI
-          path: FirewallConsoleAppAPI
+          repository: Hashibutogarasu/FirewallConsoleApp.API
+          path: FirewallConsoleApp.API
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Rust
@@ -64,7 +64,7 @@ jobs:
 
       - name: Build and Pack Dependencies
         run: |
-          dotnet pack LibFirewallShared/LibFirewall.Shared.csproj -c Release -o ./local-packages
+          dotnet pack LibFirewall.Shared/LibFirewall.Shared.csproj -c Release -o ./local-packages
           dotnet pack LibFirewall/LibFirewall.csproj -c Release -o ./local-packages
 
       - name: Publish Single File
