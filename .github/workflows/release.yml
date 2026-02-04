@@ -28,15 +28,47 @@ jobs:
     if: ${{ needs.release-please.outputs.release_created }}
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout FirewallConsoleApp
+        uses: actions/checkout@v4
+        with:
+          path: FirewallConsoleApp
+
+      - name: Checkout LibFirewall
+        uses: actions/checkout@v4
+        with:
+          repository: Hashibutogarasu/LibFirewall
+          path: LibFirewall
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout LibFirewall.Shared
+        uses: actions/checkout@v4
+        with:
+          repository: Hashibutogarasu/LibFirewall.Shared
+          path: LibFirewall.Shared
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout FirewallConsoleApp.API
+        uses: actions/checkout@v4
+        with:
+          repository: Hashibutogarasu/FirewallConsoleApp.API
+          path: FirewallConsoleApp.API
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
+      - name: Build and Pack Dependencies
+        run: |
+          dotnet pack LibFirewall.Shared/LibFirewall.Shared.csproj -c Release -o ./local-packages
+          dotnet pack LibFirewall/LibFirewall.csproj -c Release -o ./local-packages
+
       - name: Publish Single File
-        run: dotnet publish FirewallConsoleApp.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o ./publish
+        run: dotnet publish FirewallConsoleApp/FirewallConsoleApp.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o ./publish -s ./local-packages -s https://api.nuget.org/v3/index.json
 
       - name: Zip Artifact
         run: Compress-Archive -Path ./publish/* -DestinationPath ./FirewallConsoleApp.zip
