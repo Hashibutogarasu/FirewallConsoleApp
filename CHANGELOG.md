@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/Hashibutogarasu/FirewallConsoleApp/compare/v1.0.2...v1.0.3) (2026-02-04)
+
+
+### Bug Fixes
+
+* formatted lines ([1807c33](https://github.com/Hashibutogarasu/FirewallConsoleApp/commit/1807c33ca89ef1701b607f44afc94aeea01685e8))
+
 ## [1.0.2](https://github.com/Hashibutogarasu/FirewallConsoleApp/compare/v1.0.1...v1.0.2) (2026-02-04)
 
 
