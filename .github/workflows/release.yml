@@ -92,10 +92,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh release upload ${{ needs.release-please.outputs.tag_name }} ./FirewallConsoleApp.zip --clobber --repo ${{ github.repository }}
-
       - name: Publish to Winget
         uses: vedantmgoyal9/winget-releaser@v2
         with:
-          identifier: FirewallConsoleApp
+          identifier: Hashibutogarasu.FirewallConsoleApp
           token: ${{ secrets.WINGET_TOKEN }}
           release-tag: ${{ needs.release-please.outputs.tag_name }}
