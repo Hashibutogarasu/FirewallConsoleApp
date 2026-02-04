@@ -40,17 +40,17 @@ jobs:
           path: LibFirewall
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Checkout LibFirewall.Shared
+      - name: Checkout LibFirewallShared
         uses: actions/checkout@v4
         with:
-          repository: Hashibutogarasu/LibFirewall.Shared
+          repository: Hashibutogarasu/LibFirewallShared
           path: LibFirewall.Shared
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Checkout FirewallConsoleApp.API
+      - name: Checkout FirewallConsoleAppAPI
         uses: actions/checkout@v4
         with:
-          repository: Hashibutogarasu/FirewallConsoleApp.API
+          repository: Hashibutogarasu/FirewallConsoleAppAPI
           path: FirewallConsoleApp.API
           token: ${{ secrets.GITHUB_TOKEN }}
 
