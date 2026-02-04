@@ -64,8 +64,10 @@ jobs:
 
       - name: Build and Pack Dependencies
         run: |
-          dotnet pack LibFirewall.Shared/LibFirewall.Shared.csproj -c Release -o ./local-packages
-          dotnet pack LibFirewall/LibFirewall.csproj -c Release -o ./local-packages
+          dotnet build LibFirewall.Shared/LibFirewall.Shared.csproj -c Release
+          dotnet pack LibFirewall.Shared/LibFirewall.Shared.csproj -c Release -o ./local-packages --no-build
+          dotnet build LibFirewall/LibFirewall.csproj -c Release
+          dotnet pack LibFirewall/LibFirewall.csproj -c Release -o ./local-packages --no-build
 
       - name: Publish Single File
         run: dotnet publish FirewallConsoleApp/FirewallConsoleApp.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o ./publish -s ./local-packages -s https://api.nuget.org/v3/index.json
