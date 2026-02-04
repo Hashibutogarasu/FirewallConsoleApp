@@ -44,14 +44,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: Hashibutogarasu/LibFirewallShared
-          path: LibFirewall.Shared
+          path: LibFirewallShared
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Checkout FirewallConsoleAppAPI
         uses: actions/checkout@v4
         with:
           repository: Hashibutogarasu/FirewallConsoleAppAPI
-          path: FirewallConsoleApp.API
+          path: FirewallConsoleAppAPI
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Rust
