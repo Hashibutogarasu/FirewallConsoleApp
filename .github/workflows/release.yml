@@ -64,7 +64,7 @@ jobs:
 
       - name: Build and Pack Dependencies
         run: |
-          dotnet pack LibFirewall.Shared/LibFirewall.Shared.csproj -c Release -o ./local-packages
+          dotnet pack LibFirewallShared/LibFirewall.Shared.csproj -c Release -o ./local-packages
           dotnet pack LibFirewall/LibFirewall.csproj -c Release -o ./local-packages
 
       - name: Publish Single File
