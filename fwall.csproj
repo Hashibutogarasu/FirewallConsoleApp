@@ -11,6 +11,11 @@
     <PublishReadyToRun>true</PublishReadyToRun>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <AssemblyName>fwall</AssemblyName>
+    <Title>fwall</Title>
+    <Product>fwall</Product>
+    <Description>fwall - Firewall Console App</Description>
+    <Authors>Hashibutogarasu</Authors>
+    <Company>Hashibutogarasu</Company>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(Configuration)' == 'Debug'">
