@@ -1,0 +1,105 @@
+name: manual-release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag name (e.g. v1.1.2). If empty, uses version from fwall.csproj'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout FirewallConsoleApp
+        uses: actions/checkout@v4
+        with:
+          path: FirewallConsoleApp
+
+      - name: Checkout LibFirewall
+        uses: actions/checkout@v4
+        with:
+          repository: Hashibutogarasu/LibFirewall
+          path: LibFirewall
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout LibFirewall.Shared
+        uses: actions/checkout@v4
+        with:
+          repository: Hashibutogarasu/LibFirewall.Shared
+          path: LibFirewall.Shared
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout FirewallConsoleApp.API
+        uses: actions/checkout@v4
+        with:
+          repository: Hashibutogarasu/FirewallConsoleApp.API
+          path: FirewallConsoleApp.API
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Build and Pack Dependencies
+        run: |
+          dotnet build LibFirewall.Shared/LibFirewall.Shared.csproj -c Release
+          dotnet pack LibFirewall.Shared/LibFirewall.Shared.csproj -c Release -o ./local-packages --no-build
+          dotnet build LibFirewall/LibFirewall.csproj -c Release
+          dotnet pack LibFirewall/LibFirewall.csproj -c Release -o ./local-packages --no-build
+
+      - name: Create Temporary NuGet.Config
+        run: |
+          $config = @"
+          <?xml version="1.0" encoding="utf-8"?>
+          <configuration>
+            <packageSources>
+              <add key="local-packages" value="$(Get-Location)\local-packages" />
+              <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
+            </packageSources>
+          </configuration>
+          "@
+          $config | Out-File -FilePath nuget.config -Encoding utf8
+
+      - name: Get Target Tag
+        id: get_tag
+        shell: pwsh
+        run: |
+          if ("${{ github.event.inputs.tag_name }}" -ne "") {
+            $tag = "${{ github.event.inputs.tag_name }}"
+          } else {
+            [xml]$xml = Get-Content FirewallConsoleApp/fwall.csproj
+            $version = $xml.Project.PropertyGroup.Version
+            $tag = "v$version"
+          }
+          echo "TAG=$tag" >> $env:GITHUB_ENV
+          echo "tag=$tag" >> $env:GITHUB_OUTPUT
+
+      - name: Publish Single File
+        run: dotnet publish FirewallConsoleApp/fwall.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o ./publish
+
+      - name: Zip Artifact
+        run: Compress-Archive -Path ./publish/* -DestinationPath ./fwall.zip
+
+      - name: Create or Update Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $tag = "${{ steps.get_tag.outputs.tag }}"
+          # Check if release exists
+          $exists = gh release view $tag --repo ${{ github.repository }} 2>&1
+          if ($LastExitCode -eq 0) {
+            echo "Release exists, uploading artifact..."
+            gh release upload $tag ./fwall.zip --clobber --repo ${{ github.repository }}
+          } else {
+            echo "Release does not exist, creating..."
+            gh release create $tag ./fwall.zip --title "$tag" --generate-notes --repo ${{ github.repository }}
+          }
