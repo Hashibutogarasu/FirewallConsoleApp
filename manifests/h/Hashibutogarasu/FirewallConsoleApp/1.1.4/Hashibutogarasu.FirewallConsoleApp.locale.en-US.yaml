@@ -13,6 +13,9 @@ License: Unlicense
 LicenseUrl: https://github.com/Hashibutogarasu/FirewallConsoleApp/blob/HEAD/LICENSE
 ShortDescription: A utility console app for manage firewall in windows
 ReleaseNotesUrl: https://github.com/Hashibutogarasu/FirewallConsoleApp/releases/tag/v1.1.4
+ReleaseNotes: |-
+  - Changed application name and alias to 'fwall'
+  - Updated manifest to ensure proper command recognition
 Documentations:
 - DocumentLabel: Wiki
   DocumentUrl: https://github.com/Hashibutogarasu/FirewallConsoleApp/wiki
