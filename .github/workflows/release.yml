@@ -98,3 +98,4 @@ jobs:
           identifier: Hashibutogarasu.FirewallConsoleApp
           token: ${{ secrets.WINGET_TOKEN }}
           release-tag: ${{ needs.release-please.outputs.tag_name }}
+          installers-regex: '.(exe|msi|msix|appx|zip)(bundle){0,1}$'
