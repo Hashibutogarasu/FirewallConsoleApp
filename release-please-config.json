@@ -2,14 +2,14 @@
     "packages": {
         ".": {
             "release-type": "simple",
-            "package-name": "FirewallConsoleApp",
-            "component": "FirewallConsoleApp",
+            "package-name": "fwall",
+            "component": "fwall",
             "include-component-in-tag": false,
             "pull-request-title-pattern": "chore: release ${component} ${version}",
             "extra-files": [
                 {
                     "type": "xml",
-                    "path": "FirewallConsoleApp.csproj",
+                    "path": "fwall.csproj",
                     "xpath": "//Project/PropertyGroup/Version"
                 }
             ]
