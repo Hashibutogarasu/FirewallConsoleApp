@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.0](https://github.com/Hashibutogarasu/FirewallConsoleApp/compare/v1.0.12...v1.1.0) (2026-02-12)
+
+
+### Features
+
+* changed console app alias and fixed automatic release ([94717b9](https://github.com/Hashibutogarasu/FirewallConsoleApp/commit/94717b93f27d2bb1e39ffa287b9742e3e12f05c0))
+* changed console app alias and fixed automatic release ([cd7ee3b](https://github.com/Hashibutogarasu/FirewallConsoleApp/commit/cd7ee3b7c8b76917d766819c38f3b13bd65268cc))
+
 ## [1.0.12](https://github.com/Hashibutogarasu/FirewallConsoleApp/compare/v1.0.11...v1.0.12) (2026-02-12)
 
 
