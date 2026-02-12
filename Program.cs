@@ -9,6 +9,7 @@ class Program
         Parser.Default.ParseArguments<
             ServeOptions,
             GetInboundOptions, AddInboundOptions, DeleteInboundOptions, UpdateInboundOptions,
+            GetOutboundOptions, AddOutboundOptions, DeleteOutboundOptions, UpdateOutboundOptions,
             GetConnectionOptions, AddConnectionOptions, DeleteConnectionOptions, UpdateConnectionOptions>(args)
             .WithParsed(options =>
             {
@@ -19,6 +20,10 @@ class Program
                     GetInboundOptions opts => new GetInboundCommand(opts),
                     AddInboundOptions opts => new AddInboundCommand(opts),
                     DeleteInboundOptions opts => new DeleteInboundCommand(opts),
+                    UpdateOutboundOptions opts => new UpdateOutboundCommand(opts),
+                    GetOutboundOptions opts => new GetOutboundCommand(opts),
+                    AddOutboundOptions opts => new AddOutboundCommand(opts),
+                    DeleteOutboundOptions opts => new DeleteOutboundCommand(opts),
                     UpdateConnectionOptions opts => new UpdateConnectionCommand(opts),
                     GetConnectionOptions opts => new GetConnectionCommand(opts),
                     AddConnectionOptions opts => new AddConnectionCommand(opts),
