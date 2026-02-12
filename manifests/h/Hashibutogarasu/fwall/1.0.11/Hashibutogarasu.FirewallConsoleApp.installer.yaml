@@ -6,8 +6,8 @@ PackageVersion: 1.0.11
 InstallerType: zip
 NestedInstallerType: portable
 NestedInstallerFiles:
-- RelativeFilePath: FirewallConsoleApp.exe
-  PortableCommandAlias: FirewallConsoleApp
+- RelativeFilePath: fwall.exe
+  PortableCommandAlias: fwall
 Installers:
 - Architecture: x64
   InstallerUrl: https://github.com/Hashibutogarasu/FirewallConsoleApp/releases/download/v1.0.11/FirewallConsoleApp.zip
