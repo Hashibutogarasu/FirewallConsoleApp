@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.3](https://github.com/Hashibutogarasu/FirewallConsoleApp/compare/v1.1.2...v1.1.3) (2026-02-12)
+
+
+### Bug Fixes
+
+* fixed version manifest ([30ec978](https://github.com/Hashibutogarasu/FirewallConsoleApp/commit/30ec978d46265ff334f062e3e6fb1077c547f007))
+* fixed version manifest ([95fa399](https://github.com/Hashibutogarasu/FirewallConsoleApp/commit/95fa399881960d8440bd304c7a319a8cbd9e763f))
+
 ## [1.1.2](https://github.com/Hashibutogarasu/FirewallConsoleApp/compare/v1.1.1...v1.1.2) (2026-02-12)
 
 
