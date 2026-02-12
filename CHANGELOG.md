@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.12](https://github.com/Hashibutogarasu/FirewallConsoleApp/compare/v1.0.11...v1.0.12) (2026-02-12)
+
+
+### Bug Fixes
+
+* fixed outbound, delete commands ([6e5d82c](https://github.com/Hashibutogarasu/FirewallConsoleApp/commit/6e5d82ccaa577276c7e540fb1a62fabbacf55293))
+* fixed outbound, delete commands ([3f79f2b](https://github.com/Hashibutogarasu/FirewallConsoleApp/commit/3f79f2b0313d1cf14989e1e7311d4023ca7c790e))
+
 ## [1.0.11](https://github.com/Hashibutogarasu/FirewallConsoleApp/compare/v1.0.10...v1.0.11) (2026-02-04)
 
 
