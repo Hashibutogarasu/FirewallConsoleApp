@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1](https://github.com/Hashibutogarasu/FirewallConsoleApp/compare/v1.1.0...v1.1.1) (2026-02-12)
+
+
+### Bug Fixes
+
+* fixed zip file not uploaded ([11aee58](https://github.com/Hashibutogarasu/FirewallConsoleApp/commit/11aee584b8ce2c3ce774a83d6d49a2df3fcf7634))
+* fixed zip file not uploaded ([dd70170](https://github.com/Hashibutogarasu/FirewallConsoleApp/commit/dd7017017995382ae8a676e37ac994b6cba24839))
+
 ## [1.1.0](https://github.com/Hashibutogarasu/FirewallConsoleApp/compare/v1.0.12...v1.1.0) (2026-02-12)
 
 
